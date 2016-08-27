@@ -474,7 +474,7 @@ Standard deviation of prices: $165,340.28
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p><strong>Answer:</strong> This model has captured the variation of the target variable very well. The R^2 score is very near to 1.</p>
+<p><strong>Answer:</strong> This model has captured the variation of the target variable very well. The R^2 score is close to 1.</p>
 
 </div>
 </div>
@@ -1657,7 +1657,9 @@ zMzMzMysAzzYMjMzMzMz6wAPtszMzMzMzDrg/wGbyIkBfpxGegAAAABJRU5ErkJggg==
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p><strong>Answer: </strong>At maximum depth of 3, the training and testing scores appear to be converging at about 0.8. After about 300 training points, the covergence appears to level off, suggesting that adding more points would not increase convergence. The leveling off of convergence is seen as both training and testing curves appearing to approach a constant value, the testing a little below 0.8, and the training a little above 0.8. Also manifest in the stable convergence, adding more training points would not make the model better at prediction.</p>
+<p><strong>Answer: </strong></p>
+<p>As more training points are added, both the training and testing curves approach a stable value. Above about 150-300 data points, adding more data doesn't have much effect.</p>
+<p>At maximum depth of 3, the training and testing scores appear to be converging at about 0.8. The leveling off of convergence is seen as both training and testing curves appearing to approach a constant value, the testing a little below 0.8, and the training a little above 0.8. Also manifest in the stable convergence, adding more training points would not make the model better at prediction.</p>
 
 </div>
 </div>
@@ -2159,8 +2161,8 @@ n5wAAAAASUVORK5CYII=
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p><strong>Answer: </strong> 
-With a max depth of 1, the model has a high bias. A visual cue for this is the low score.</p>
-<p>With a max depth of 10, the model has higher variance. Visual cues for this are the very high training score (1, or nearly 1) versus the much lower (and trending worse) validation score.</p>
+With a max depth of 1, the model has a high bias. A visual cue for this is the low scores (both).</p>
+<p>With a max depth of 10, the model has higher variance. Visual cues for this are the very high training score (1, or nearly 1) along with the much lower (and trending worse) validation score.</p>
 
 </div>
 </div>
@@ -2236,7 +2238,7 @@ It can be applied by using sklearn.grid_search.GridSearchCV.</p>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p><strong>Answer: </strong>
-k-fold cross validation is a technique for splitting data into training and testing groups multiple times and checking how the learning algorithm does with 'different' groups. The benefit to using this for grid search is that the training data gets some variety in how it's looked at by the algorithm, so a better representation of how it performs can be made.</p>
+k-fold cross validation is a technique for splitting data into training and testing groups multiple times and checking how the learning algorithm does with different splits, then averaging the results. The benefit to using this for grid search is that the training data gets some variety in how it's looked at by the algorithm, so a better analysis of how it performs can be made.</p>
 
 </div>
 </div>
@@ -2286,18 +2288,12 @@ k-fold cross validation is a technique for splitting data into training and test
     <span class="n">cv_sets</span> <span class="o">=</span> <span class="n">ShuffleSplit</span><span class="p">(</span><span class="n">X</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">n_iter</span> <span class="o">=</span> <span class="mi">10</span><span class="p">,</span> <span class="n">test_size</span> <span class="o">=</span> <span class="mf">0.20</span><span class="p">,</span>
                     <span class="n">random_state</span> <span class="o">=</span> <span class="mi">0</span><span class="p">)</span>
 
-    <span class="c1"># TODO: Create a decision tree regressor object</span>
     <span class="n">regressor</span> <span class="o">=</span> <span class="n">DecisionTreeRegressor</span><span class="p">()</span>
 
-    <span class="c1"># TODO: Create a dictionary for the parameter &#39;max_depth&#39; with a range from</span>
-    <span class="c1"># 1 to 10</span>
     <span class="n">params</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;max_depth&#39;</span><span class="p">:[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">6</span><span class="p">,</span><span class="mi">7</span><span class="p">,</span><span class="mi">8</span><span class="p">,</span><span class="mi">9</span><span class="p">,</span><span class="mi">10</span><span class="p">]}</span>
 
-    <span class="c1"># TODO: Transform &#39;performance_metric&#39; into a scoring function using</span>
-    <span class="c1"># &#39;make_scorer&#39; </span>
     <span class="n">scoring_fnc</span> <span class="o">=</span> <span class="n">make_scorer</span><span class="p">(</span><span class="n">performance_metric</span><span class="p">)</span>
 
-    <span class="c1"># TODO: Create the grid search object</span>
     <span class="n">grid</span> <span class="o">=</span> <span class="n">GridSearchCV</span><span class="p">(</span><span class="n">regressor</span><span class="p">,</span> <span class="n">params</span><span class="p">,</span> <span class="n">scoring</span><span class="o">=</span><span class="n">scoring_fnc</span><span class="p">,</span> <span class="n">cv</span><span class="o">=</span><span class="n">cv_sets</span><span class="p">)</span>
 
     <span class="c1"># Fit the grid search object to the data to compute the optimal model</span>
@@ -2370,7 +2366,7 @@ k-fold cross validation is a technique for splitting data into training and test
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p><strong>Answer: </strong>
-The maximum depth of the optimal model is 3.</p>
+The maximum depth of the optimal model is 3. This is the same as I chose above in question 6.</p>
 <p>Running the above block multiple times show s that the optimal max depth can be either 3, 4, or 5. This probably means that the 'optimal' value is only slightly better than the others, and some of the  randomness that comes from the ShuffleSplit() function affects which is best.</p>
 
 </div>
@@ -2467,7 +2463,10 @@ Predicted selling price for Client 3&apos;s home: $946,400.00
 <li><p>Client 3:  $946,400.00</p>
 </li>
 </ul>
-<p>This prices seem to line up with my answer to question 1 above.</p>
+<p>These values line up with the estimates of what I said above in question 1.</p>
+<p>Client 1's house has medium number of rooms, high-ish neighborhood poverty, and low-moderate student-to-teacher ratio, which gives a price a little below median.</p>
+<p>Client 2's house has fewer rooms, higher neighborhood poverty, and a worse student-to-teacher ratio, with the lowest price of the three.</p>
+<p>Client 3's house has more rooms, much lower neighborhood poverty, and a much better student-to-teacher ratio, with a price more than double the median.</p>
 
 </div>
 </div>
