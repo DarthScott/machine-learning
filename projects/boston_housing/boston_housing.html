@@ -204,7 +204,7 @@ div#notebook {
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[1]:</div>
+<div class="prompt input_prompt">In&nbsp;[3]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span></span><span class="c1"># Import libraries necessary for this project</span>
@@ -274,14 +274,14 @@ div#notebook {
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[2]:</div>
+<div class="prompt input_prompt">In&nbsp;[5]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span></span><span class="n">minimum_price</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">MEDV</span><span class="o">.</span><span class="n">min</span><span class="p">()</span>
 <span class="n">maximum_price</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">MEDV</span><span class="o">.</span><span class="n">max</span><span class="p">()</span>
 <span class="n">mean_price</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">MEDV</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
 <span class="n">median_price</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">MEDV</span><span class="o">.</span><span class="n">median</span><span class="p">()</span>
-<span class="n">std_price</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">MEDV</span><span class="o">.</span><span class="n">std</span><span class="p">()</span>
+<span class="n">std_price</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">std</span><span class="p">(</span><span class="n">prices</span><span class="p">)</span>
 
 
 <span class="c1"># Show the calculated statistics</span>
@@ -309,7 +309,7 @@ Minimum price: $105,000.00
 Maximum price: $1,024,800.00
 Mean price: $454,342.94
 Median price $438,900.00
-Standard deviation of prices: $165,340.28
+Standard deviation of prices: $165,171.13
 </pre>
 </div>
 </div>
@@ -548,6 +548,7 @@ Standard deviation of prices: $165,340.28
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p><strong>Answer: </strong> By splitting the data into training and testing sets, the effectiveness of the learning algorithm can be evaluated. Without the evaluation, you might not know if you model is accurate or inaccurate, and you would have no way to know if corrections/ changes/ additions to your model were effective.</p>
+<p>Having different training and testing sets allows the model to be evaluated on data that it hasn't seen before, which can reveal if it has been overfitted.</p>
 
 </div>
 </div>
@@ -2239,6 +2240,7 @@ It can be applied by using sklearn.grid_search.GridSearchCV.</p>
 <div class="text_cell_render border-box-sizing rendered_html">
 <p><strong>Answer: </strong>
 k-fold cross validation is a technique for splitting data into training and testing groups multiple times and checking how the learning algorithm does with different splits, then averaging the results. The benefit to using this for grid search is that the training data gets some variety in how it's looked at by the algorithm, so a better analysis of how it performs can be made.</p>
+<p>The data is split into k groups (folds) where group 1 is the test data and groups 2 through k are the training data, and then fitting and testing the data. This is repeated for group 2, where group 1 and groups 3 through k are the training data, and so on for each fold until each group has been the training data. This means that there will be k iterations of the process, and the results averaged.</p>
 
 </div>
 </div>
