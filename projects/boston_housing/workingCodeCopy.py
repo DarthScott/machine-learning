@@ -15,11 +15,11 @@ features = data.drop('MEDV', axis = 1)
 # Success
 print "Boston housing dataset has {} data points with {} variables each.\n".format(*data.shape)
 
-minimum_price = data.MEDV.min()
-maximum_price = data.MEDV.max()
-mean_price = data.MEDV.mean()
-median_price = data.MEDV.median()
-std_price = data.MEDV.std()
+minimum_price = np.amin(prices)
+maximum_price = np.amax(prices)
+mean_price = np.mean(prices)
+median_price = np.median(prices)
+std_price = np.std(prices)
 
 # Show the calculated statistics
 print "Statistics for Boston housing dataset:\n"
@@ -47,7 +47,7 @@ print "Model has a coefficient of determination, R^2, of {:.3f}.".format(score)
 from sklearn.cross_validation import train_test_split
 
 X_train, X_test, y_train, y_test = train_test_split(features, prices,
-                test_size=0.8, train_size=0.2)
+                test_size=0.8, train_size=0.2, random_state=68)
 
 # print X_train
 # print X_test
